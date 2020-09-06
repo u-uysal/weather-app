@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "postman-request": "^2.88.1-postman.24"
   },
   "devDependencies": {},
