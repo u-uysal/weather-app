@@ -15,7 +15,10 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/weather", (req, res) => {
-  res.send("Hello from weather page!");
+  res.send({
+    name: "UFUK", // automatically converting to Json
+    age: 28,
+  });
 });
 
 app.listen(3000, () => {
