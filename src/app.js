@@ -1,8 +1,19 @@
 const path = require("path");
 const express = require("express");
+const request = require("postman-request");
 
-console.log(__dirname);
-console.log();
+require("dotenv").config();
+const url = `http://api.weatherstack.com/current?access_key=${process.env.API_KEY}&query=New%20York`;
+
+request(url, function (error, response, body) {
+  console.log("error:", error); // Print the error if one occurred
+  console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+
+  const data = JSON.parse(body);
+  console.log(data.current.temperature);
+});
+
+console.log(process.env.API_KEY);
 
 const app = express();
 
@@ -20,9 +31,25 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/weather", (req, res) => {
-  res.send({
-    name: "UFUK", // automatically converting to Json
-    age: 28,
+  if (!req.query.address) {
+    return res.send({
+      error: "You must provide an address",
+    });
+  }
+  const url = `http://api.weatherstack.com/current?access_key=${process.env.API_KEY}&query=${req.query.address}`;
+
+  request(url, function (error, response, body) {
+    console.log("error:", error); // Print the error if one occurred
+    console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+
+    const data = JSON.parse(body);
+    console.log(data.current.temperature);
+    res.send({
+      temperature: data.current.temperature, // automatically converting to Json
+      observationTime: data.current.observation_time,
+      address: req.query.address.toUpperCase(),
+      weatherDescriptions: data.current.weather_descriptions[0],
+    });
   });
 });
 
