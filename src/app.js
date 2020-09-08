@@ -15,6 +15,7 @@ app.get("/help", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
+  console.log(req.query); // get queries from http url
   res.send("Hello from about page!");
 });
 
