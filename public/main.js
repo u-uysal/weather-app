@@ -29,11 +29,13 @@ weatherForm.addEventListener("submit", (e) => {
 
       // hide other informations
       infoSec.classList.add("hidden");
-    } else if (hasOnlyLetter.test(location)) {
+    } else if (!hasOnlyLetter.test(location)) {
       // if user input undediserable value
 
       errorForm.textContent = "Please enter valid locations";
     } else {
+      infoSec.classList.remove("hidden");
+      errorForm.textContent = "";
       let response = await fetch(
         `http://localhost:3000/weather?address=${location}`
       );

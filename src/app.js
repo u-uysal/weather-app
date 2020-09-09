@@ -32,6 +32,7 @@ app.get("/weather", (req, res) => {
       error: "You must provide an address",
     });
   }
+
   const url = `http://api.weatherstack.com/current?access_key=${process.env.API_KEY}&query=${req.query.address}`;
 
   request(url, function (error, response, body) {
