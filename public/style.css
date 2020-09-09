@@ -24,3 +24,10 @@ h2 {
   color: orange;
   font-family: "Comfortaa", cursive;
 }
+.hidden {
+  visibility: hidden;
+}
+#error {
+  color: red;
+  margin-top: 2vh;
+}

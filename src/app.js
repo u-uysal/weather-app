@@ -10,10 +10,7 @@ request(url, function (error, response, body) {
   console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
 
   const data = JSON.parse(body);
-  console.log(data.current.temperature);
 });
-
-console.log(process.env.API_KEY);
 
 const app = express();
 
@@ -26,7 +23,6 @@ app.get("/help", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  console.log(req.query); // get queries from http url
   res.send("Hello from about page!");
 });
 
@@ -43,7 +39,7 @@ app.get("/weather", (req, res) => {
     console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
 
     const data = JSON.parse(body);
-    console.log(data.current.temperature);
+
     res.send({
       temperature: data.current.temperature, // automatically converting to Json
       observationTime: data.current.observation_time,
