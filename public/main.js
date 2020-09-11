@@ -35,6 +35,7 @@ weatherForm.addEventListener("submit", (e) => {
       errorForm.textContent = "Please enter valid locations";
     } else {
       infoSec.classList.remove("hidden");
+
       errorForm.textContent = "";
       let response = await fetch(
         `http://localhost:3000/weather?address=${location}`
