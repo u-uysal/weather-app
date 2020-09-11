@@ -15,7 +15,6 @@ body {
   margin: 10vh auto 0 auto;
   display: flex;
   width: 40vw;
-  border: 1px solid red;
   align-items: center;
   flex-direction: column;
 }
