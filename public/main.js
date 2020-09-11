@@ -37,9 +37,7 @@ weatherForm.addEventListener("submit", (e) => {
       infoSec.classList.remove("hidden");
 
       errorForm.textContent = "";
-      let response = await fetch(
-        `http://localhost:3000/weather?address=${location}`
-      );
+      let response = await fetch(`/weather?address=${location}`);
 
       let data = await response.json();
 
